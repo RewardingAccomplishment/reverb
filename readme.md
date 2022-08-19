@@ -13,7 +13,6 @@
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -21,7 +20,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/RewardingAccomplishment)
+[![Reverb][product-screenshot]](https://avatars.githubusercontent.com/u/38396659?v=4)
 
 Implementation of reverberation algorithm with test and simulation and run on DevBoard: STM32F769I.
 In reverb algorithm was implemented a Schroeder Reverberator called JCRev with coefficients from [Documentation](https://ccrma.stanford.edu/~jos/Reverb/Reverb.pdf)
@@ -33,6 +32,23 @@ In reverb algorithm was implemented a Schroeder Reverberator called JCRev with c
 
 Instructions how to setting up project locally.
 To get a local copy up and running follow these simple example steps.
+
+<pre>repo tree:
+├── CMakeLists.txt
+├── inc
+│   └── reverb.h
+├── LICENSE
+├── readme.md
+├── simulation
+│   ├── effects
+│   │   └── reverb.py
+│   ├── preamble10.wav
+│   └── test.py
+└── src
+    └── reverb.c
+
+4 directories, 8 files
+</pre>
 
 ### Prerequisites
 
@@ -75,9 +91,6 @@ Library implements reverb effect. And that effect could be check:
    ./test.py --source preamble10.wav 
    ```
 
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -108,17 +121,6 @@ Distributed under the GNU Public License. See `LICENSE.txt` for more information
 
 Marcin Sosnowski - marcin.sosnow@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
+Project Link: [Reverb](https://github.com/RewardingAccomplishment/reverb)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
