@@ -88,7 +88,7 @@ Library implements reverb effect. And that effect could be check:
    ```
 2. Run the python test script as an argument you could pass the wav source file (for example there is a file preamble10.wav):
    ```sh
-   ./test.py --source preamble10.wav 
+   ./test.py --source preamble10.wav
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -101,9 +101,19 @@ Library implements reverb effect. And that effect could be check:
 - [x] Python simulation script
 - [x] Implementation of C lib
 - [ ] Tests with DevBoard: STM32F769I
-    - [ ] input from mems microphone to line out
-    - [ ] applying the reverb effect
+    - [x] input from mems microphone to line out
+    - [x] applying the reverb effect
     - [ ] user interface on lcd screen
+
+TODO:
+- [ ] user interface:
+    - [ ] bar for sound volume
+    - [ ] bar for reverb filter parameter (change the value for each gain and number of smaples)
+    - [ ] on/off record functionality
+- [ ] makefile (now makefile is generated from ac6studio internal builder)
+- [ ] noise reduction
+- [ ] bug fixing
+
 
 See the [open issues](https://github.com/RewardingAccomplishment/reverb/issues) for a full list of proposed features (and known issues).
 
