@@ -1,32 +1,19 @@
 /**
   ******************************************************************************
-  * @file    Audio/Audio_playback_and_record/Src/main.c
-  * @author  MCD Application Team
-  * @brief   Audio playback and record main file.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
+  * @file    Based on Audio/Audio_playback_and_record/Src/main.c
+
+  * @brief   Audio loopback main file.
   ******************************************************************************
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "waverecorder.h"
+#include "soundloop.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-//USBH_HandleTypeDef hUSBHost;
 AUDIO_ApplicationTypeDef appli_state = APPLICATION_READY;
-//FATFS USBH_FatFs;
-char USBKey_Path[4] = "0:/";
 
 /* Private function prototypes -----------------------------------------------*/
 static void MPU_Config(void);
@@ -67,22 +54,10 @@ int main(void)
   /* Init TS module */
   BSP_TS_Init(800, 480);
 
-//  /* Init Host Library */
-//  USBH_Init(&hUSBHost, USBH_UserProcess, 0);
-
-//  /* Add Supported Class */
-//  USBH_RegisterClass(&hUSBHost, USBH_MSC_CLASS);
-  
-//  /* Start Host Process */
-//  USBH_Start(&hUSBHost);
-  
   /* Run Application (Blocking mode) */
   LCD_UsrLog("INIT DONE\n");
   while (1)
   {
-//    /* USB Host Background task */
-//    USBH_Process(&hUSBHost);
-    
     /* AUDIO Menu Process */
     AUDIO_MenuProcess();
   }
@@ -114,62 +89,13 @@ static void AUDIO_InitApplication(void)
   /* Init the LCD Log module */
   LCD_LOG_Init();
   
-  LCD_LOG_SetHeader((uint8_t *)"Audio Playback and Record Application");
+  LCD_LOG_SetHeader((uint8_t *)"Audio Loopback with Reverb Application");
   
   LCD_UsrLog("USB Host library started.\n"); 
 
   /* Init Audio interface */
 //  AUDIO_PLAYER_Init();
 }
-
-/**
-  * @brief  User Process
-  * @param  phost: Host Handle
-  * @param  id: Host Library user message ID
-  * @retval None
-  */
-//static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id)
-//{
-//  switch(id)
-//  {
-//  case HOST_USER_SELECT_CONFIGURATION:
-//    break;
-//
-//  case HOST_USER_DISCONNECTION:
-//    appli_state = APPLICATION_DISCONNECT;
-//    if(FATFS_UnLinkDriver(USBKey_Path) != 0)
-//    {
-//     LCD_ErrLog("ERROR : Cannot unlink FatFS driver! \n");
-//    }
-//    if(f_mount(NULL, "", 0) != FR_OK)
-//    {
-//      LCD_ErrLog("ERROR : Cannot DeInitialize FatFs! \n");
-//    }
-//    break;
-//
-//  case HOST_USER_CLASS_ACTIVE:
-//    appli_state = APPLICATION_READY;
-//    break;
-//
-//  case HOST_USER_CONNECTION:
-//    appli_state = APPLICATION_START;
-//    /* Link the USB Mass Storage disk I/O driver */
-//    if(FATFS_LinkDriver(&USBH_Driver, USBKey_Path) != 0)
-//    {
-//      LCD_ErrLog("ERROR : Cannot link FatFS driver! \n");
-//     break;
-//    }
-//    if(f_mount(&USBH_FatFs, "", 0) != FR_OK)
-//    {
-//      LCD_ErrLog("ERROR : Cannot Initialize FatFs! \n");
-//     break;
-//    }
-//    break;
-//
-//  default:
-//    break;
-//  }
-//}
 
 /**
   * @brief  System Clock Configuration

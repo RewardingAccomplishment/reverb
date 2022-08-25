@@ -17,8 +17,8 @@
   */
   
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __WAVERECORDER_H
-#define __WAVERECORDER_H
+#ifndef __SOUNDLOOP_H
+#define __SOUNDLOOP_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -39,5 +39,5 @@ AUDIO_ErrorTypeDef AUDIO_REC_Process(void);
 AUDIO_ErrorTypeDef AUDIO_REC_Start(void);
 AUDIO_ErrorTypeDef AUDIO_PLAYER_Init(void);
 
-#endif /* __WAVERECORDER_H */
+#endif /* __SOUNDLOOP_H */
 

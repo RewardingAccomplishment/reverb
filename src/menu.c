@@ -17,7 +17,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "waverecorder.h" 
+#include "soundloop.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -109,68 +109,8 @@ void AUDIO_MenuProcess(void)
       break;
       
     case AUDIO_DEMO_EXPLORE: 
-//      if(appli_state == APPLICATION_READY)
-//      {
-//        if(AUDIO_ShowWavFiles() > 0)
-//        {
-//          LCD_ErrLog("There is no WAV file on the USB Key.\n");
-//          AUDIO_ChangeSelectMode(AUDIO_SELECT_MENU);
-//          AudioDemo.state = AUDIO_DEMO_IDLE;
-//        }
-//        else
-//        {
-//          AudioDemo.state = AUDIO_DEMO_WAIT;
-//        }
-//      }
-//      else
-//      {
-//        AudioDemo.state = AUDIO_DEMO_WAIT;
-//      }
-//      break;
-      
     case AUDIO_DEMO_PLAYBACK:
-//      if(appli_state == APPLICATION_READY)
-//      {
-//        if(AudioState == AUDIO_STATE_IDLE)
-//        {
-//          if(AUDIO_ShowWavFiles() > 0)
-//          {
-//            LCD_ErrLog("There is no WAV file on the USB Key.\n");
-//            AUDIO_ChangeSelectMode(AUDIO_SELECT_MENU);
-//            AudioDemo.state = AUDIO_DEMO_IDLE;
-//          }
-//          else
-//          {
-//            /* Start Playing */
-//            AudioState = AUDIO_STATE_INIT;
-//          }
-//          /* Clear the LCD */
-//          LCD_ClearTextZone();
-//
-//          if(AUDIO_PLAYER_Start(0) == AUDIO_ERROR_IO)
-//          {
-//            AUDIO_ChangeSelectMode(AUDIO_SELECT_MENU);
-//            AudioDemo.state = AUDIO_DEMO_IDLE;
-//          }
-//        }
-//        else /* Not idle */
-//        {
-//          if(AUDIO_PLAYER_Process() == AUDIO_ERROR_IO)
-//          {
-//            /* Clear the LCD */
-//            LCD_ClearTextZone();
-//
-//            AUDIO_ChangeSelectMode(AUDIO_SELECT_MENU);
-//            AudioDemo.state = AUDIO_DEMO_IDLE;
-//          }
-//        }
-//      }
-//      else
-//      {
-//        AudioDemo.state = AUDIO_DEMO_WAIT;
-//      }
-//      break;
-      
+    	break;
     case AUDIO_DEMO_IN:
       if(appli_state == APPLICATION_READY)
       {
@@ -182,19 +122,11 @@ void AUDIO_MenuProcess(void)
           /* Clear the LCD */
           LCD_ClearTextZone();
 
-          /* Init storage */
-//          AUDIO_StorageInit();
-
-          /*Adjust the Audio frequency */
-
           /* Initialize the Audio codec and all related peripherals (I2S, I2C, IOExpander, IOs...) */
             if(BSP_AUDIO_OUT_Init(OUTPUT_DEVICE_HEADPHONE, 100, BSP_AUDIO_FREQUENCY_16K) == 0)
             {
               BSP_AUDIO_OUT_SetAudioFrameSlot(CODEC_AUDIOFRAME_SLOT_02);
             }
-
-//          BufferCtl.state = BUFFER_OFFSET_NONE;
-
 
           /* Configure the audio recorder: sampling frequency, bits-depth, number of channels */
           if(AUDIO_REC_Start() == AUDIO_ERROR_IO)
