@@ -100,7 +100,7 @@ Library implements reverb effect. And that effect could be check:
 
 - [x] Python simulation script
 - [x] Implementation of C lib
-- [ ] Tests with DevBoard: STM32F769I
+- [x] Tests with DevBoard: STM32F769I
     - [x] input from mems microphone to line out
     - [x] applying the reverb effect
     - [ ] user interface on lcd screen
@@ -111,8 +111,6 @@ TODO:
     - [ ] bar for reverb filter parameter (change the value for each gain and number of smaples)
     - [ ] on/off record functionality
 - [ ] makefile (now makefile is generated from ac6studio internal builder)
-- [ ] noise reduction
-- [ ] bug fixing
 
 
 See the [open issues](https://github.com/RewardingAccomplishment/reverb/issues) for a full list of proposed features (and known issues).
