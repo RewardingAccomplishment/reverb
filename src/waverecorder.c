@@ -155,6 +155,7 @@ AUDIO_ErrorTypeDef AUDIO_REC_Start(void)
 
 //          BSP_AUDIO_OUT_Stop(CODEC_PDWN_SW);
           BSP_LCD_DisplayStringAt(250, LINE(10), (uint8_t *)"  [PLAY ]", LEFT_MODE);
+//          BSP_AUDIO_OUT_Play((uint16_t*)&BufferCtl.pcm_buff[0], AUDIO_IN_PCM_BUFFER_SIZE);
           BSP_AUDIO_OUT_Play((uint16_t*)&outBufferCtl.buff[0], AUDIO_OUT_BUFFER_SIZE);
           reverb_init(5801);
           return AUDIO_ERROR_NONE;
@@ -182,6 +183,9 @@ static void CopyBuffer(int16_t *pbuffer1, int16_t *pbuffer2, uint16_t BufferSize
     {
 //    	pbuffer1[i] = pbuffer2[i];
 //    	if(i%2==0)
+//    	if(pbuffer2[i]>2000)
+//    		pbuffer1[i] = pbuffer2[i];
+//    	else
 //    		pbuffer1[i] = pbuffer2[i];
 //    	else
 //    		pbuffer1[i] = pbuffer2[i];
@@ -298,15 +302,15 @@ AUDIO_ErrorTypeDef AUDIO_REC_Process(void)
     if(BufferCtl.wr_state == BUFFER_FULL)
     {
       /* Invalidate Data Cache to get the updated content of the SRAM */
-      SCB_InvalidateDCache_by_Addr((uint32_t *)(BufferCtl.pcm_buff + BufferCtl.offset), AUDIO_IN_PCM_BUFFER_SIZE*2);
+//      SCB_InvalidateDCache_by_Addr((uint32_t *)(BufferCtl.pcm_buff + BufferCtl.offset), AUDIO_IN_PCM_BUFFER_SIZE*2);
       /* Write buffer in file */
 
 //      BSP_LCD_SetTextColor(LCD_COLOR_RED);
 //      BSP_LCD_DisplayStringAtLine(14, (uint8_t *)"GOT SOME SAMPLES");
 
-      CopyBuffer((int16_t*)(outBufferCtl.buff),
-    		  (int16_t*)(BufferCtl.pcm_buff),
-			  AUDIO_OUT_BUFFER_SIZE/2);
+//      CopyBuffer((int16_t*)(outBufferCtl.buff),
+//    		  (int16_t*)(BufferCtl.pcm_buff),
+//			  AUDIO_OUT_BUFFER_SIZE);
 //      memset((uint8_t*)(BufferCtl.pcm_buff),0, AUDIO_OUT_BUFFER_SIZE);
 
 //		memcpy((uint8_t*)(outBufferCtl.buff),
@@ -465,23 +469,24 @@ AUDIO_ErrorTypeDef AUDIO_REC_Process(void)
   */
 void BSP_AUDIO_IN_TransferComplete_CallBack(void)
 {
-  BufferCtl.pcm_ptr+= AUDIO_IN_PCM_BUFFER_SIZE/2;
-  if(BufferCtl.pcm_ptr == AUDIO_IN_PCM_BUFFER_SIZE/2)
-  {
-    BufferCtl.wr_state   =  BUFFER_FULL;
-    BufferCtl.offset  = 0;
-  }
-  
-  if(BufferCtl.pcm_ptr >= AUDIO_IN_PCM_BUFFER_SIZE)
-  {
-    BufferCtl.wr_state   =  BUFFER_FULL;
-    BufferCtl.offset  = AUDIO_IN_PCM_BUFFER_SIZE/2;    
-    BufferCtl.pcm_ptr = 0;
-  }
+//  BufferCtl.pcm_ptr+= AUDIO_IN_PCM_BUFFER_SIZE/2;
+//  if(BufferCtl.pcm_ptr == AUDIO_IN_PCM_BUFFER_SIZE/2)
+//  {
+//    BufferCtl.wr_state   =  BUFFER_FULL;
+//    BufferCtl.offset  = 0;
+//  }
+//
+//  if(BufferCtl.pcm_ptr >= AUDIO_IN_PCM_BUFFER_SIZE)
+//  {
+//    BufferCtl.wr_state   =  BUFFER_FULL;
+//    BufferCtl.offset  = AUDIO_IN_PCM_BUFFER_SIZE/2;
+//    BufferCtl.pcm_ptr = 0;
+//  }
 
-//  CopyBuffer((uint8_t*)(outBufferCtl.buff+AUDIO_IN_PCM_BUFFER_SIZE/2),
-//      		  (uint8_t*)(BufferCtl.pcm_buff+AUDIO_IN_PCM_BUFFER_SIZE/2),
-//  			  AUDIO_OUT_BUFFER_SIZE/2);
+  CopyBuffer((int16_t*)(outBufferCtl.buff+AUDIO_IN_PCM_BUFFER_SIZE/2),
+		  (int16_t*)(BufferCtl.pcm_buff+AUDIO_IN_PCM_BUFFER_SIZE/2),
+		  AUDIO_OUT_BUFFER_SIZE/2);
+  memset((uint8_t*)(BufferCtl.pcm_buff),0, AUDIO_OUT_BUFFER_SIZE/2);
 }
 
 /**
@@ -491,23 +496,27 @@ void BSP_AUDIO_IN_TransferComplete_CallBack(void)
   */
 void BSP_AUDIO_IN_HalfTransfer_CallBack(void)
 { 
-  BufferCtl.pcm_ptr+= AUDIO_IN_PCM_BUFFER_SIZE/2;
-  if(BufferCtl.pcm_ptr == AUDIO_IN_PCM_BUFFER_SIZE/2)
-  {
-    BufferCtl.wr_state   =  BUFFER_FULL;
-    BufferCtl.offset  = 0;
-  }
-  
-  if(BufferCtl.pcm_ptr >= AUDIO_IN_PCM_BUFFER_SIZE)
-  {
-    BufferCtl.wr_state   =  BUFFER_FULL;
-    BufferCtl.offset  = AUDIO_IN_PCM_BUFFER_SIZE/2;    
-    BufferCtl.pcm_ptr = 0;
-  }
+//  BufferCtl.pcm_ptr+= AUDIO_IN_PCM_BUFFER_SIZE/2;
+//  if(BufferCtl.pcm_ptr == AUDIO_IN_PCM_BUFFER_SIZE/2)
+//  {
+//    BufferCtl.wr_state   =  BUFFER_FULL;
+//    BufferCtl.offset  = 0;
+//  }
+//
+//  if(BufferCtl.pcm_ptr >= AUDIO_IN_PCM_BUFFER_SIZE)
+//  {
+//    BufferCtl.wr_state   =  BUFFER_FULL;
+//    BufferCtl.offset  = AUDIO_IN_PCM_BUFFER_SIZE/2;
+//    BufferCtl.pcm_ptr = 0;
+//  }
 
 //  CopyBuffer((uint8_t*)(outBufferCtl.buff),
 //      		  (uint8_t*)(BufferCtl.pcm_buff),
 //  			  AUDIO_OUT_BUFFER_SIZE/2);
+	  CopyBuffer((int16_t*)(outBufferCtl.buff),
+			  (int16_t*)(BufferCtl.pcm_buff ),
+			  AUDIO_IN_PCM_BUFFER_SIZE/2);
+	  memset((uint8_t*)(BufferCtl.pcm_buff),0, AUDIO_IN_PCM_BUFFER_SIZE/2);
 }
 
 /*******************************************************************************

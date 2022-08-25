@@ -188,7 +188,7 @@ void AUDIO_MenuProcess(void)
           /*Adjust the Audio frequency */
 
           /* Initialize the Audio codec and all related peripherals (I2S, I2C, IOExpander, IOs...) */
-            if(BSP_AUDIO_OUT_Init(OUTPUT_DEVICE_BOTH, 100, BSP_AUDIO_FREQUENCY_16K) == 0)
+            if(BSP_AUDIO_OUT_Init(OUTPUT_DEVICE_HEADPHONE, 100, BSP_AUDIO_FREQUENCY_16K) == 0)
             {
               BSP_AUDIO_OUT_SetAudioFrameSlot(CODEC_AUDIOFRAME_SLOT_02);
             }

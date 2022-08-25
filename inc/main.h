@@ -29,8 +29,8 @@
 #include "lcd_log.h"
 
 /* Exported Defines ----------------------------------------------------------*/
-#define AUDIO_OUT_BUFFER_SIZE                      1024
-#define AUDIO_IN_PCM_BUFFER_SIZE                   1024//4*2304 /* buffer size in half-word */
+#define AUDIO_OUT_BUFFER_SIZE                      4*1024
+#define AUDIO_IN_PCM_BUFFER_SIZE                   4*1024//4*2304 /* buffer size in half-word */
 
 #define FILEMGR_LIST_DEPDTH                        24
 #define FILEMGR_FILE_NAME_SIZE                     40
